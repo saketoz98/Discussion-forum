@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+
+  <div class="container">
+    <form action="/discussions" method="post">
+      <div class="form-group">
+        <label for="sel1">Select Category</label>
+        <select name="topicList" class="form-control" id="sel1">
+          <option value="sports">Sports</option>
+          <option value="technology">Technology</option>
+          <option value="science">Science</option>
+          <option value="politics">Politics</option>
+          <option value="education">Education</option>
+          <option value="others">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Topic</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="name" placeholder="Topic Heading">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Description</label>
+        <textarea name="description" rows="8" cols="80" ></textarea>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg" name="button">Submit</button>
+      </div>
+    </form>
+
+
+    </form>
+  </div>
+
+  <% include ../partials/footer %>

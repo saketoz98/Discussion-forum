@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        Category
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= discussion.name %></h5>
+        <form action="/discussions/<%= discussion._id %>?_method=PUT" method="post">
+
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Description</label>
+            <textarea name="description" rows="8" cols="80" ><%= discussion.description %></textarea>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg" name="button">Save</button>
+          </div>
+        </form>
+        <blockquote class="blockquote mb-0">
+          <footer class="blockquote-footer">Started by - <cite title="Source Title"><%= discussion.author.username %></cite></footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <% include ../partials/footer %>

@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+
+<div class="row">
+	<div class="col-md-4">
+			<h1><%= user.f_name  %></h1>
+		<div class="thumbnail">
+			<!-- <% if(currentUser.image){ %>
+				<img src="https://www.tenforums.com/attachments/tutorials/146359d1501443008-change-default-account-picture-windows-10-a-user.png" alt="user profile image">
+			<% }else{ %>
+				<img src="<%= user.image %>" alt="user profile image">
+			<% } %> -->
+
+			<img src="<%= currentUser.image %>"
+			alt="" width="200px" height="200px" >
+
+			<form action="/uploads?_method=PUT"  method="POST" enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="file" id="image" name="image" accept="image/*" required>
+        </div>
+				<div class="form-group">
+            <button class="btn btn-sm btn-primary btn-block">Change Profile Picture</button>
+        </div>
+			</form>
+
+		</div>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quasi similique architecto ad modi sunt quaerat possimus, officiis quos. Voluptatibus repellendus exercitationem, id saepe sunt consectetur non quam sapiente assumenda.
+
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quasi similique architecto ad modi sunt quaerat possimus, officiis quos. Voluptatibus repellendus exercitationem, id saepe sunt consectetur non quam sapiente assumenda.
+	</div>
+	<div class="col-md-8">
+		<h3><%= user.username %>'s discussions:</h3>
+		<ul>
+		<% discussions.forEach(function(discussion) { %>
+			<li><a href="/discussions/<%= discussion.id %>"><%= discussion.name %></a></li>
+		<% }); %>
+		</ul>
+	</div>
+</div>
+
+<% include ../partials/footer %>

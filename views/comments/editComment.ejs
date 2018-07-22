@@ -1,0 +1,24 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="">
+      <h2>
+        <%= discussion.name %>
+      </h2>
+    </div>
+    <div class="">
+      <h4>Name - <%= comment.user.username %></h4>
+    </div>
+    <form action="/discussions/<%= discussion._id %>/comments/<%= comment._id %>?_method=PUT" method="post">
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Your Opinion</label>
+        <textarea name="description" rows="8" cols="80" ><%= comment.description %></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg" name="button">Submit</button>
+      </div>
+    </form>
+
+</div>
+
+<% include ../partials/footer %>

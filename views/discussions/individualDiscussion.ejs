@@ -1,0 +1,61 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="card">
+      <div class="card-header">
+        <%= discussion.category.toUpperCase() %>
+        <span class="float-right"><%= moment(discussion.createdAt).fromNow() %></span>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= discussion.name %></h5>
+        <p class="card-text"><%= discussion.description %></p>
+        <blockquote class="blockquote mb-0">
+          <footer class="blockquote-footer">Started by  <cite title="Source Title"><%= discussion.author.username %></cite></footer>
+        </blockquote>
+        <% if(currentUser && discussion.author.id.equals(currentUser._id)){ %>
+          <a href="/discussions/<%= discussion._id %>/edit" class="btn btn-success">Edit</a>
+        <% } %>
+      </div>
+    </div>
+
+
+
+    <div class="card">
+      <div class="card-body">
+        <div class="text-right">
+          <a class="btn btn-success" href="/discussions/<%= discussion._id %>/comments/new">Add New Comment</a>
+        </div>
+        <hr>
+         <h4><strong>Comments <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true"></span></strong></h4>
+        <div class="row">
+          <% discussion.comments.forEach(function(comment){ %>
+          <div class="col-md-12 mb-2">
+            <div class="card">
+              <div class="card-body">
+                <div class="float-left">
+                  <p class="card-title"><%= comment.user.username %></p>
+                  <p class="card-text"><%= comment.description %></p>
+                </div>
+                <div class="float-right">
+                  <p><%= moment(comment.createdAt).fromNow() %></p>
+
+                  <% if(currentUser && comment.user.id.equals(currentUser._id)){ %>
+                  <div class="float-right">
+                    <a class="btn btn-xs btn-warning"
+                       href="/discussions/<%=discussion._id %>/comments/<%=comment._id %>/edit">Edit</a>
+                    <form id="delete-form" style="display:inline-block" action="/discussions/<%=discussion._id %>/comments/<%=comment._id %>?_method=DELETE" method="POST">
+                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                    </form>
+                  </div>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+        </div>
+      </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

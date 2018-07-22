@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+
+<div >
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Discussions</h1>
+      <p class="lead">Lets discuss various topics together</p>
+    </div>
+  </div>
+  <div class="container">
+      <% allDiscussions.forEach((discussion)=>{ %>
+        <div class="card">
+          <div class="card-header">
+            <%= discussion.category.toUpperCase() %>
+            <span class="float-right"><%= moment(discussion.createdAt).fromNow() %></span>
+
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= discussion.name %></h5>
+            <p class="card-text"><%= discussion.description %></p>
+            <blockquote class="blockquote mb-0">
+              <footer class="blockquote-footer">Started by  <%= discussion.author.username %></footer>
+            </blockquote>
+            <a href="/discussions/<%= discussion._id %>" class="btn btn-success">Participate</a>
+          </div>
+
+        </div>
+      <% }); %>
+      <hr>
+    </div>
+
+
+</div>
+
+<% include ../partials/footer %>
